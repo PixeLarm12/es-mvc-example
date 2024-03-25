@@ -18,10 +18,10 @@ class Book extends Model
     public const BOOK_LANG_CHINESE = 'ch';
     public const BOOK_LANG_GERMAN = 'gr';
 
-    public const BOOK_PUB_1 = 'harper-collins';
-    public const BOOK_PUB_2 = 'rocco';
-    public const BOOK_PUB_3 = 'pearson';
-    public const BOOK_PUB_4 = 'editora-ftd';
+    public const BOOK_PUB_HARPER = 'harper-collins';
+    public const BOOK_PUB_ROCCO = 'rocco';
+    public const BOOK_PUB_PEARSON = 'pearson';
+    public const BOOK_PUB_FTD = 'editora-ftd';
 
     protected $table = "books";
 
@@ -123,19 +123,19 @@ class Book extends Model
     {
         return [
             [
-                'key' => self::BOOK_PUB_1,
+                'key' => self::BOOK_PUB_HARPER,
                 'label' => 'Harper Collins',
             ],
             [
-                'key' => self::BOOK_PUB_2,
+                'key' => self::BOOK_PUB_ROCCO,
                 'label' => 'Rocco',
             ],
             [
-                'key' => self::BOOK_PUB_3,
+                'key' => self::BOOK_PUB_PEARSON,
                 'label' => 'Pearson',
             ],
             [
-                'key' => self::BOOK_PUB_4,
+                'key' => self::BOOK_PUB_FTD,
                 'label' => 'Editora FTD',
             ],
         ];
