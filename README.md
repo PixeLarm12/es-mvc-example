@@ -9,5 +9,6 @@
 - `composer install`
 - `sail up`
 - `sail artisan key:generate`
+- `sail artisan migrate --seed`
 - `npm run dev`
 - Access your local browser
