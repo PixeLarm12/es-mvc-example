@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('books')->name('books.')->group(function(){
+    Route::get('/', [BookController::class, 'index'])->name('index');
+    Route::get('/{book}', [BookController::class, 'edit'])->name('edit');
+    Route::get('/enums', [BookController::class, 'getEnums'])->name('getEnums');
+
+    Route::post('/', [BookController::class, 'store'])->name('store');
+    Route::post('/{book}', [BookController::class, 'update'])->name('update');
+
+    Route::delete('/{book}', [BookController::class, 'destroy'])->name('destroy');
 });
