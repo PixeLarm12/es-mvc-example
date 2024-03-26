@@ -69,6 +69,8 @@ import PageTemplate from '../Components/PageTemplate.vue';
 
 export default {
     beforeMount() {
+        this.getEnums();
+
         if(this.$route.params.id) {
             this.getBook();
         }
@@ -95,6 +97,9 @@ export default {
                 language: "",
                 publisher: "",
             },
+            genres: [],
+            publishers: [],
+            languages: [],
         }
     },
     computed: {
@@ -113,7 +118,7 @@ export default {
             }
         },
         async getBook() {
-            await axios.get(`/api/books/${this.book.id}`)
+            await axios.get(`/api/books/${this.$route.params.id}`)
                 .then(response => {
                     if(response.data) {
                         this.book.id = response.data.id;
@@ -123,6 +128,17 @@ export default {
                         this.book.pages = response.data.pages;
                         this.book.language = response.data.language;
                         this.book.publisher = response.data.publisher;
+                    }
+                })
+                .catch(error => console.log(error));
+        },
+        async getEnums() {
+            await axios.get(`/api/enums`)
+                .then(response => {
+                    if(response.data) {
+                        this.genres = response.data.genres;
+                        this.publishers = response.data.publishers;
+                        this.languages = response.data.languages;
                     }
                 })
                 .catch(error => console.log(error));

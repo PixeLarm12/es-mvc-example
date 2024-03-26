@@ -14,10 +14,11 @@ use App\Http\Controllers\BookController;
 |
 */
 
+Route::get('/enums', [BookController::class, 'enums'])->name('enums');
+
 Route::prefix('books')->name('books.')->group(function(){
     Route::get('/', [BookController::class, 'index'])->name('index');
     Route::get('/{book}', [BookController::class, 'edit'])->name('edit');
-    Route::get('/enums', [BookController::class, 'getEnums'])->name('getEnums');
 
     Route::post('/', [BookController::class, 'store'])->name('store');
     Route::post('/{book}', [BookController::class, 'update'])->name('update');

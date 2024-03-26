@@ -56,7 +56,7 @@ class BookController extends Controller
                 'title' => $request->title,
                 'author' => $request->author,
                 'genre' => $request->genre,
-                'language' => $request->language,
+                'language' => $request->language, 
                 'pages' => $request->pages,
                 'publisher' => $request->publisher,
             ])
@@ -68,7 +68,7 @@ class BookController extends Controller
         return $book ? $book->delete() : false;
     }
 
-    public function getEnums()
+    public function enums()
     {
         return [
             'publishers' => Book::getPulishers(),

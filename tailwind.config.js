@@ -11,7 +11,7 @@ export default {
         'light-black': '#121212',
       },
       backgroundImage: {
-        'product-banner': "url('/resources/src/images/product_banner.jpg')",
+        'main-banner': "url('/resources/src/images/main-page-banner.png')",
       }
     },
   },
