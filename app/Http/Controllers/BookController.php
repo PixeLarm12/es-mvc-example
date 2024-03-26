@@ -22,11 +22,7 @@ class BookController extends Controller
 
     public function store(BookRequest $request)
     {
-        if($request->validated()) {
-            return response()->json($this->repository->store($request->getData()));
-        }
-
-        return response()->json([]);
+        return response()->json($this->repository->store($request));
     }
 
     public function edit(Book $book)
@@ -36,11 +32,7 @@ class BookController extends Controller
 
     public function update(BookRequest $request, Book $book)
     {
-        if($request->validated()) {
-            return response()->json($this->repository->update($book, $request->getData()));
-        }
-
-        return response()->json([]);
+        return response()->json($this->repository->update($book, $request));
     }
 
     public function destroy(Book $book)

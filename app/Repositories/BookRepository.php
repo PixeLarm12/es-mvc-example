@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use Illuminate\Support\Collection;
 
@@ -12,14 +13,22 @@ class BookRepository
         return Book::orderBy('title')->get();
     }
 
-    public function store($data): bool
+    public function store(BookRequest $request): bool
     {
-        return (bool) Book::create($data);
+        if($request->validated()) {
+            return (bool) Book::create($request->getData());
+        }
+
+        return false;
     }
 
-    public function update($book, $data): bool
+    public function update($book, BookRequest $request): bool
     {
-        return (bool) $book->update($data);
+        if($request->validated()) {
+            return (bool) $book->update($request->getData());
+        }
+
+        return false;
     }
 
     public function delete($book): bool
