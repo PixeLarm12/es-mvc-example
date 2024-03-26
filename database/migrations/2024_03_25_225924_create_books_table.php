@@ -13,9 +13,9 @@ return new class extends Migration
             $table->string('title');
             $table->string('author');
             $table->string('genre');
-            $table->string('language')->nullable();
-            $table->integer('pages')->nullable();
-            $table->string('publisher')->nullable();
+            $table->string('language');
+            $table->integer('pages');
+            $table->string('publisher');
             $table->timestamps();
         });
     }

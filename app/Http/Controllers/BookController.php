@@ -9,7 +9,7 @@ class BookController extends Controller
 {
     public function index()
     {
-        return response()->json(Book::all()->orderBy('title'));
+        return response()->json(Book::orderBy('title')->get());
     }
 
     public function store(Request $request)
@@ -19,8 +19,8 @@ class BookController extends Controller
             'author' => 'required|string|min:3|max:60',
             'genre' => 'required|string|min:3|max:60',
             'language' => 'required|string|min:2|max:60',
-            'pages' => 'sometimes|required|integer',
-            'publisher' => 'sometimes|required|string|min:3|max:60',
+            'pages' => 'required|integer|min:1',
+            'publisher' => 'required|string|min:3|max:60',
         ]);
 
         return response()->json(
@@ -47,8 +47,8 @@ class BookController extends Controller
             'author' => 'required|string|min:3|max:60',
             'genre' => 'required|string|min:3|max:60',
             'language' => 'required|string|min:2|max:60',
-            'pages' => 'sometimes|required|integer',
-            'publisher' => 'sometimes|required|string|min:3|max:60',
+            'pages' => 'required|integer',
+            'publisher' => 'required|string|min:3|max:60',
         ]);
 
         return response()->json(
