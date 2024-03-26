@@ -6,7 +6,14 @@ export default {
     "./resources/**/*.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'light-black': '#121212',
+      },
+      backgroundImage: {
+        'main-banner': "url('/resources/src/images/main-page-banner.png')",
+      }
+    },
   },
   plugins: [],
 }
