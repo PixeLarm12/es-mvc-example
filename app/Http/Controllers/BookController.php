@@ -2,37 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookRequest;
 use App\Models\Book;
-use Illuminate\Http\Request;
+use App\Repositories\BookRepository;
 
 class BookController extends Controller
 {
+    protected $repository;
+
+    public function __construct(BookRepository $bookRepository)
+    {
+        $this->repository = $bookRepository;
+    }
+    
     public function index()
     {
-        return response()->json(Book::orderBy('title')->get());
+        return response()->json($this->repository->getAll());
     }
 
-    public function store(Request $request)
+    public function store(BookRequest $request)
     {
-        $request->validate([
-            'title' => 'required|string|min:3|max:60',
-            'author' => 'required|string|min:3|max:60',
-            'genre' => 'required|string|min:3|max:60',
-            'language' => 'required|string|min:2|max:60',
-            'pages' => 'required|integer|min:1',
-            'publisher' => 'required|string|min:3|max:60',
-        ]);
+        if($request->validated()) {
+            return response()->json($this->repository->store($request->getData()));
+        }
 
-        return response()->json(
-            Book::create([
-                'title' => $request->title,
-                'author' => $request->author,
-                'genre' => $request->genre,
-                'language' => $request->language,
-                'pages' => $request->pages,
-                'publisher' => $request->publisher,
-            ])
-        );
+        return response()->json([]);
     }
 
     public function edit(Book $book)
@@ -40,40 +34,22 @@ class BookController extends Controller
         return response()->json($book);
     }
 
-    public function update(Request $request, Book $book)
+    public function update(BookRequest $request, Book $book)
     {
-        $request->validate([
-            'title' => 'required|string|min:3|max:60',
-            'author' => 'required|string|min:3|max:60',
-            'genre' => 'required|string|min:3|max:60',
-            'language' => 'required|string|min:2|max:60',
-            'pages' => 'required|integer',
-            'publisher' => 'required|string|min:3|max:60',
-        ]);
+        if($request->validated()) {
+            return response()->json($this->repository->update($book, $request->getData()));
+        }
 
-        return response()->json(
-            $book->update([
-                'title' => $request->title,
-                'author' => $request->author,
-                'genre' => $request->genre,
-                'language' => $request->language, 
-                'pages' => $request->pages,
-                'publisher' => $request->publisher,
-            ])
-        );
+        return response()->json([]);
     }
 
     public function destroy(Book $book)
     {
-        return $book ? $book->delete() : false;
+        return response()->json($this->repository->delete($book));
     }
 
     public function enums()
     {
-        return [
-            'publishers' => Book::getPulishers(),
-            'languages' => Book::getLanguages(),
-            'genres' => Book::getGenres(),
-        ];
+        return response()->json($this->repository->getEnums());
     }
 }
