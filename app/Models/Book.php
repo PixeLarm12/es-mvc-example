@@ -34,6 +34,16 @@ class Book extends Model
         'publisher',
     ];
 
+    protected $appends = [
+      'genre_formatted'  
+    ];
+
+    public function getGenreFormattedAttribute() {
+        $genre = self::getGenreByKey($this->attributes['genre']);
+
+        return $genre ? $genre['label'] : "";
+    }
+
     public static function getGenreByKey($key)
     {
         $genres = self::getGenres();

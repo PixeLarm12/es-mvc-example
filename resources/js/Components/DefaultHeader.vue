@@ -8,7 +8,7 @@
             <div class="lg:w-7/12 md:w-10/12 w-full h-full text-center flex justify-end">
                 <div class="lg:w-4/12 md:w-6/12 w-full flex flex-row justify-between">
                     <router-link class="nav-item" to="/">See books</router-link>
-                    <router-link class="nav-item" to="/books/create">New book</router-link>
+                    <router-link class="nav-item" to="/create">New book</router-link>
                 </div>
             </div>
         </nav>

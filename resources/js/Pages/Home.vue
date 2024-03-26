@@ -3,7 +3,7 @@
         <section id="all-books" class="w-full min-h-[40vh] flex flex-col justify-center items-center">
             <div class="lg:w-10/12 w-full flex flex-row justify-start items-center lg:h-16 h-10 gap-4">
                 <div>
-                    <router-link to="/books/create" class="button-primary px-10 mb-4">New book</router-link>
+                    <router-link to="/create" class="button-primary px-10 mb-4">New book</router-link>
                 </div>
             </div>
 
